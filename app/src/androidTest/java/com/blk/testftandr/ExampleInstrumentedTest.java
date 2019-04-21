@@ -15,33 +15,46 @@ public class ExampleInstrumentedTest {
     private TestApplication myApp;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp()  {
         myApp = new TestApplication();
-//        MockitoAnnotations.initMocks(this);
-//        final TiPresenterInstructor<LoginMvp.View> instructor = new TiPresenterInstructor<>(new LoginPresenter());
-//        instructor.attachView(view);
     }
 
-    @Test public void testTrending() throws Exception {
+    @Test public void testTrending()  {
         myApp.openNavigationBar();
         myApp.clickOnMenuField("Trending");
         myApp.checkOpenActivity("Trending");
     }
 
-    @Test public void testTheme() throws Exception {
+    @Test public void testTheme()  {
         myApp.openNavigationBar();
-        myApp.scroll();
         myApp.clickOnMenuField("Settings");
         myApp.pressOnField("Theme");
         myApp.swipeToLeft();
     }
 
-    @Test public void onUserResponse() throws Exception {
-
+    @Test public void testRestorePurchases()  {
+        myApp.openNavigationBar();
+        myApp.clickOnMenuField("Restore Purchases");
     }
 
-    @Test public void login() throws Exception {
-
+    @Test public void testSendFeedback()  {
+        myApp.openNavigationBar();
+        myApp.clickOnMenuField("Send feedback");
+        myApp.clickOkDebugVersion();
+        myApp.pressOnEditableField("Title","hello");
+        myApp.pressOnField("Description");
+        myApp.compareDeviceInfoWithTextInField("android.widget.EditText","FastHub Version");
+        myApp.pressConfirmButton();
+        myApp.presSendMesageButton();
     }
+
+
+    @Test public void testAbout()  {
+        myApp.openNavigationBar();
+        myApp.clickOnMenuField("About");
+        myApp.scrollToBlock("About");
+        myApp.checkChangelogField();
+    }
+
 
 }

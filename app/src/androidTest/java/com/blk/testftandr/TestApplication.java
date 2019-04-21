@@ -2,6 +2,7 @@ package com.blk.testftandr;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
@@ -32,6 +33,13 @@ public class TestApplication {
         page = new PageObject(device, packageName);
     }
 
+    public void presSendMesageButton(){
+        page.pressSendButton();
+    }
+
+    public void pressConfirmButton(){
+        page.pressConfirmButton();
+    }
     public void checkOpenActivity(String activityName) {
         assertTrue(page.isPageVisible(activityName,20000));
     }
@@ -47,9 +55,28 @@ public class TestApplication {
     public void pressOnField(String name){
         page.pressOnField(name,20000);
     }
+    public void pressOnEditableField(String name,String text){
+        page.setTextOnField(name,20000,text);
+    }
 
+    void scrollToBlock(String name){
+        page.scrollToElement(name);
+    }
+    void clickOkDebugVersion(){
+        page.clickOk();
+    }
+    void checkChangelogField(){
+        page.checks();
+    }
     void swipeToLeft(){
         page.swipeToLEft();
+    }
+
+    void compareDeviceInfoWithTextInField(String field,String text){
+        String textInField = page.getTextFromEditableField(text);
+        assertTrue(textInField.contains(Build.MANUFACTURER));
+        assertTrue(textInField.contains(Build.BRAND));
+        assertTrue(textInField.contains(Build.MODEL));
     }
     public void scroll(){
         page.scroll();

@@ -1,6 +1,8 @@
 package com.blk.testftandr;
 
 import android.graphics.Point;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -45,7 +47,15 @@ class PageObject {
         device.wait(Until.findObject(By.clazz(TextView.class).textContains(name)),timeout).click();
     }
 
+    void setTextOnField(String name, int timeout, String text){
+        UiObject2 field= device.wait(Until.findObject(By.clazz(EditText.class)),timeout);
+        field.click();
+        field.setText(text);
+    }
 
+    String getTextFromEditableField(String field){
+        return device.wait(Until.findObject(By.clazz(EditText.class)),20000).getText();
+    }
     void pressOnMenuField(String name){
         UiScrollable appViews1 = new UiScrollable(new UiSelector().resourceId("com.fastaccess.github.debug:id/design_navigation_view"));
 
@@ -59,5 +69,33 @@ class PageObject {
     }
     boolean isPageVisible(String page,int timeout){
         return device.wait(Until.findObject(By.clazz(TextView.class).textContains(page)),timeout) != null;
+    }
+
+    void scrollToElement(String name){
+        UiScrollable appViews1 = new UiScrollable(new UiSelector().resourceId("com.fastaccess.github.debug:id/design_navigation_view"));
+
+        try {
+            appViews1.scrollIntoView(new UiSelector().resourceId("com.fastaccess.github.debug:id/mal_list_card_title").textContains(name));
+        } catch (UiObjectNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    boolean checks(){
+        UiObject2 obj = device.wait(Until.findObject(By.res("com.fastaccess.github.debug:id/mal_item_image")),10000);
+        return (obj != null);
+    }
+
+    void pressConfirmButton(){
+        device.wait(Until.findObject(By.res("com.fastaccess.github.debug:id/submit").clazz(TextView.class)),10000).click();
+    }
+
+    void pressSendButton(){
+        device.wait(Until.findObject(By.res("com.fastaccess.github.debug:id/submit").clazz(ImageButton.class)),10000).click();
+    }
+
+    void clickOk(){
+        device.wait(Until.findObject(By.res("android:id/button1")),10000).click();
     }
 }
