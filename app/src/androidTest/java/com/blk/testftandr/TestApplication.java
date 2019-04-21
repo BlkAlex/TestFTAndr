@@ -41,8 +41,18 @@ public class TestApplication {
         page.pressNavigate();
     }
 
-    public void clickOnField(String name) {
-        page.pressOnField(name);
+    public void clickOnMenuField(String name) {
+        page.pressOnMenuField(name);
+    }
+    public void pressOnField(String name){
+        page.pressOnField(name,20000);
+    }
+
+    void swipeToLeft(){
+        page.swipeToLEft();
+    }
+    public void scroll(){
+        page.scroll();
     }
     public void close() {
         device.pressHome();

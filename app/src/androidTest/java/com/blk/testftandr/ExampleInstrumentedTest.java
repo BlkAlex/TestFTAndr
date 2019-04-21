@@ -1,16 +1,9 @@
 package com.blk.testftandr;
-import android.content.Context;
-
-import androidx.test.InstrumentationRegistry;
-import androidx.test.runner.AndroidJUnit4;
-import androidx.test.uiautomator.UiDevice;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
-import static org.junit.Assert.*;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -29,14 +22,18 @@ public class ExampleInstrumentedTest {
 //        instructor.attachView(view);
     }
 
-    @Test public void onTokenResponse() throws Exception {
+    @Test public void testTrending() throws Exception {
         myApp.openNavigationBar();
-        myApp.clickOnField("Trending");
+        myApp.clickOnMenuField("Trending");
         myApp.checkOpenActivity("Trending");
     }
 
-    @Test public void onHandleAuthIntent() throws Exception {
-
+    @Test public void testTheme() throws Exception {
+        myApp.openNavigationBar();
+        myApp.scroll();
+        myApp.clickOnMenuField("Settings");
+        myApp.pressOnField("Theme");
+        myApp.swipeToLeft();
     }
 
     @Test public void onUserResponse() throws Exception {
