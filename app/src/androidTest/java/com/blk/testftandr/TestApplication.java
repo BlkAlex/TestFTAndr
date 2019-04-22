@@ -17,20 +17,11 @@ public class TestApplication {
     public TestApplication() {
         device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         device.pressHome();
-
-        // Get launch intent
-        String packageName = "";
-        Context context = InstrumentationRegistry.getInstrumentation().getContext(); //gets the context based on the instrumentation
-
-        Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.fastaccess.github.debug");  //sets the intent to start your app
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);  //clear out any previous task, i.e., make sure it starts on the initial screen
+        Context context = InstrumentationRegistry.getInstrumentation().getContext();
+        Intent intent = context.getPackageManager().getLaunchIntentForPackage("com.fastaccess.github.debug");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
-
-        // Stat application
-        context.startActivity(intent);
-
-        // Get page objects
-        page = new PageObject(device, packageName);
+        page = new PageObject(device);
     }
 
     public void presSendMesageButton(){
@@ -45,11 +36,10 @@ public class TestApplication {
     }
 
     public void openNavigationBar() {
-
         page.pressNavigate();
     }
 
-    public void clickOnMenuField(String name) {
+    public void pressOnMenuField(String name) {
         page.pressOnMenuField(name);
     }
     public void pressOnField(String name){
@@ -62,26 +52,27 @@ public class TestApplication {
     void scrollToBlock(String name){
         page.scrollToElement(name);
     }
-    void clickOkDebugVersion(){
-        page.clickOk();
+
+    void pressOkDebugVersion() {
+        page.pressOk();
     }
     void checkChangelogField(){
-        page.checks();
-    }
-    void swipeToLeft(){
-        page.swipeToLEft();
+        page.isConfirmVisible();
     }
 
-    void compareDeviceInfoWithTextInField(String field,String text){
-        String textInField = page.getTextFromEditableField(text);
+    void swipeFromRight() {
+        page.swipeFromRight();
+    }
+
+    void pressConfirmThemeButton() {
+        page.pressConfirmThemeButton();
+    }
+
+    void compareDeviceInfoWithTextInField() {
+        String textInField = page.getTextFromEditableField();
         assertTrue(textInField.contains(Build.MANUFACTURER));
         assertTrue(textInField.contains(Build.BRAND));
         assertTrue(textInField.contains(Build.MODEL));
     }
-    public void scroll(){
-        page.scroll();
-    }
-    public void close() {
-        device.pressHome();
-    }
+
 }

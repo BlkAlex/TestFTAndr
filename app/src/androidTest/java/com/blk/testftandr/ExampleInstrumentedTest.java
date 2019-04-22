@@ -21,29 +21,30 @@ public class ExampleInstrumentedTest {
 
     @Test public void testTrending()  {
         myApp.openNavigationBar();
-        myApp.clickOnMenuField("Trending");
+        myApp.pressOnMenuField("Trending");
         myApp.checkOpenActivity("Trending");
     }
 
     @Test public void testTheme()  {
         myApp.openNavigationBar();
-        myApp.clickOnMenuField("Settings");
+        myApp.pressOnMenuField("Settings");
         myApp.pressOnField("Theme");
-        myApp.swipeToLeft();
+        myApp.swipeFromRight();
+        myApp.pressConfirmThemeButton();
     }
 
     @Test public void testRestorePurchases()  {
         myApp.openNavigationBar();
-        myApp.clickOnMenuField("Restore Purchases");
+        myApp.pressOnMenuField("Restore Purchases");
     }
 
     @Test public void testSendFeedback()  {
         myApp.openNavigationBar();
-        myApp.clickOnMenuField("Send feedback");
-        myApp.clickOkDebugVersion();
+        myApp.pressOnMenuField("Send feedback");
+        myApp.pressOkDebugVersion();
         myApp.pressOnEditableField("Title","hello");
         myApp.pressOnField("Description");
-        myApp.compareDeviceInfoWithTextInField("android.widget.EditText","FastHub Version");
+        myApp.compareDeviceInfoWithTextInField();
         myApp.pressConfirmButton();
         myApp.presSendMesageButton();
     }
@@ -51,7 +52,7 @@ public class ExampleInstrumentedTest {
 
     @Test public void testAbout()  {
         myApp.openNavigationBar();
-        myApp.clickOnMenuField("About");
+        myApp.pressOnMenuField("About");
         myApp.scrollToBlock("About");
         myApp.checkChangelogField();
     }
